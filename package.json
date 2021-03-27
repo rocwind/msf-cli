@@ -1,0 +1,40 @@
+{
+  "name": "msf-cli",
+  "version": "0.0.1",
+  "description": "MySyncFolders - sync files between folders based on watchman",
+  "main": "index.js",
+  "bin": {
+    "msf": "lib/cli.js"
+  },
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "clean": "rm -rf lib",
+    "build": "npm run clean && npm run compile",
+    "compile": "tsc -d",
+    "start": "npm run compile -- --watch",
+    "release": "npm test && npm run build && standard-version && git push --follow-tags origin master && npm publish",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rocwind/msf-cli.git"
+  },
+  "keywords": [
+    "watchman",
+    "sync"
+  ],
+  "author": "Roc",
+  "license": "MIT",
+  "dependencies": {
+    "fb-watchman": "^2.0.1",
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "@types/fb-watchman": "^2.0.0",
+    "@types/node": "^14.14.35",
+    "@types/yargs": "^16.0.0",
+    "typescript": "^4.2.3"
+  }
+}

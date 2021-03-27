@@ -15,7 +15,7 @@
     "compile": "tsc -d",
     "start": "npm run compile -- --watch",
     "release": "npm test && npm run build && standard-version && git push --follow-tags origin master && npm publish",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"no test specified\""
   },
   "repository": {
     "type": "git",
@@ -29,10 +29,13 @@
   "license": "MIT",
   "dependencies": {
     "fb-watchman": "^2.0.1",
+    "fs-extra": "^9.1.0",
+    "wait-ready": "^0.5.2",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@types/fb-watchman": "^2.0.0",
+    "@types/fs-extra": "^9.0.9",
     "@types/node": "^14.14.35",
     "@types/yargs": "^16.0.0",
     "typescript": "^4.2.3"

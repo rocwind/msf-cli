@@ -12,7 +12,7 @@
   "scripts": {
     "clean": "rm -rf lib",
     "build": "npm run clean && npm run compile",
-    "compile": "tsc -d",
+    "compile": "tsc",
     "start": "npm run compile -- --watch",
     "release": "npm test && npm run build && standard-version && git push --follow-tags origin master && npm publish",
     "test": "echo \"no test specified\""
@@ -38,6 +38,7 @@
     "@types/fs-extra": "9.0.9",
     "@types/node": "14.14.37",
     "@types/yargs": "16.0.1",
+    "standard-version": "9.1.1",
     "typescript": "4.2.3"
   }
 }

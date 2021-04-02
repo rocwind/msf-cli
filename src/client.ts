@@ -20,7 +20,7 @@ const watchingPaths = new Set<string>();
 
 // exit process
 const exit = () => {
-    console.log(yellow('\ncleanup and exit...'));
+    console.log(yellow('\ncleanup and exit ...'));
     Promise.all(
         Array.from(watchingPaths).map((path) => {
             return command(['unsubscribe', path, path]).then(() => {
@@ -69,7 +69,7 @@ export const startWatch = async (path: string, handler: Handler, logger: Logger)
 
     watchingPaths.add(absPath);
     await afterReady();
-    logger(`watching ${absPath}...`);
+    logger(`start watching ${absPath} ...`);
     await command(['watch-project', absPath]);
     // subscrbie changes
     await command([

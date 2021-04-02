@@ -51,8 +51,8 @@ const getSubscriptionHandler = (source: string, target: string, logger: Logger):
     };
 };
 
-const srcLogger = getLogger(green);
+const srcLogger = getLogger((text) => green(`=> ${text}`));
 startWatch(src, getSubscriptionHandler(src, dest, srcLogger), srcLogger);
 
-const destLogger = getLogger(cyan);
+const destLogger = getLogger((text) => cyan(`<= ${text}`));
 startWatch(dest, getSubscriptionHandler(dest, src, destLogger), destLogger);

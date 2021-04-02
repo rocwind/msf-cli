@@ -1,4 +1,4 @@
-import { dirname } from 'path';
+import { dirname, basename } from 'path';
 import { copyFile, stat, utimes, rm, ensureDir } from 'fs-extra';
 import { Logger } from './logger';
 
@@ -27,11 +27,15 @@ const getFileInfo = async (info: FileInfo): Promise<FileInfo> => {
 export const syncTo = async (src: FileInfo, dest: FileInfo, logger: Logger): Promise<void> => {
     const [srcStat, destStat] = await Promise.all([getFileInfo(src), getFileInfo(dest)]);
     if (srcStat.mtime > destStat.mtime) {
-        logger(`[cp] ${src.name} => ${dest.name}`);
-        const parentDir = dirname(dest.name);
-        await ensureDir(parentDir);
-        await copyFile(src.name, dest.name);
-        await utimes(destStat.name, srcStat.mtime, srcStat.mtime);
+        try {
+            const parentDir = dirname(dest.name);
+            await ensureDir(parentDir);
+            await copyFile(src.name, dest.name);
+            await utimes(destStat.name, srcStat.mtime, srcStat.mtime);
+            logger(`[cp] 🚚 ${dest.name} ${destStat.mtime === 0 ? 'created' : 'updated'}.`);
+        } catch (err) {
+            // do nothing
+        }
         return;
     }
     return;
@@ -43,6 +47,10 @@ export const rmFile = async (file: FileInfo, logger: Logger): Promise<void> => {
         // target file was changed after the src file was removed, ignore this rm
         return;
     }
-    logger(`[rm] ${file.name}`);
-    await rm(file.name, () => {});
+    try {
+        await rm(file.name, () => {});
+        logger(`[rm] ❌ ${file.name} removed.`);
+    } catch (err) {
+        // do nothing
+    }
 };

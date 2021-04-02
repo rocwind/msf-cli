@@ -1,7 +1,7 @@
 {
   "name": "msf-cli",
   "version": "0.0.1",
-  "description": "MySyncFolders - sync files between folders based on watchman",
+  "description": "My Sync Folders - sync files between folders based on watchman",
   "main": "index.js",
   "bin": {
     "msf": "lib/cli.js"

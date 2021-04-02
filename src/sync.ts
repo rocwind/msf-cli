@@ -37,7 +37,12 @@ export const syncTo = async (src: FileInfo, dest: FileInfo, logger: Logger): Pro
     return;
 };
 
-export const rmFile = async (src: FileInfo, logger: Logger): Promise<void> => {
-    logger(`[rm] ${src.name}`);
-    await rm(src.name, () => {});
+export const rmFile = async (file: FileInfo, logger: Logger): Promise<void> => {
+    const currentState = await getFileInfo({ name: file.name });
+    if (currentState.mtime !== file.mtime) {
+        // target file was changed after the src file was removed, ignore this rm
+        return;
+    }
+    logger(`[rm] ${file.name}`);
+    await rm(file.name, () => {});
 };

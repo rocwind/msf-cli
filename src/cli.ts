@@ -43,6 +43,7 @@ const getSubscriptionHandler = (source: string, target: string, logger: Logger):
             rmFile(
                 {
                     name: join(target, info.name),
+                    mtime: info.mtime,
                 },
                 logger,
             );

@@ -28,6 +28,7 @@
   "author": "Roc",
   "license": "MIT",
   "dependencies": {
+    "chalk": "^4.1.0",
     "fb-watchman": "^2.0.1",
     "fs-extra": "^9.1.0",
     "wait-ready": "^0.5.2",

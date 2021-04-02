@@ -1,7 +1,9 @@
 import { promisify } from 'util';
 import { resolve } from 'path';
 import watchman from 'fb-watchman';
+import { yellow } from 'chalk';
 import { wait } from 'wait-ready';
+import { Logger } from './logger';
 
 const client = new watchman.Client();
 
@@ -18,7 +20,7 @@ const watchingPaths = new Set<string>();
 
 // exit process
 const exit = () => {
-    console.log('cleanup and exit...');
+    console.log(yellow('\ncleanup and exit...'));
     Promise.all(
         Array.from(watchingPaths).map((path) => {
             return command(['unsubscribe', path, path]).then(() => {
@@ -55,7 +57,7 @@ client.on('subscription', (resp: { subscription: string; files: SubscriptionFile
     }
 });
 
-export const startWatch = async (path: string, handler: Handler): Promise<void> => {
+export const startWatch = async (path: string, handler: Handler, logger: Logger): Promise<void> => {
     const absPath = resolve(path);
 
     handlerBySubscription.set(absPath, handler);
@@ -67,7 +69,7 @@ export const startWatch = async (path: string, handler: Handler): Promise<void> 
 
     watchingPaths.add(absPath);
     await afterReady();
-    console.log(`watching ${absPath}...`);
+    logger(`watching ${absPath}...`);
     await command(['watch-project', absPath]);
     // subscrbie changes
     await command([

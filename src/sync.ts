@@ -1,4 +1,4 @@
-import { dirname, basename } from 'path';
+import { dirname } from 'path';
 import { copyFile, stat, utimes, rm, ensureDir } from 'fs-extra';
 import { Logger } from './logger';
 

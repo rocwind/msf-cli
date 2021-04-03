@@ -48,7 +48,7 @@ export const rmFile = async (file: FileInfo, logger: Logger): Promise<void> => {
         return;
     }
     try {
-        await rm(file.name, () => {});
+        await rm(file.name);
         logger(`[rm] ❌ ${file.name} removed.`);
     } catch (err) {
         // do nothing

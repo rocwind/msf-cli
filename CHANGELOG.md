@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.1.0](https://github.com/rocwind/msf-cli/compare/v1.0.0...v1.1.0) (2021-04-03)
+
+
+### Features
+
+* support using , in files option ([2084fc7](https://github.com/rocwind/msf-cli/commit/2084fc7601da4d08f3932fb267811bf9bfeb0999))
+
+
+### Bug Fixes
+
+* check of sync a folder to itself case and throw error ([417ec9b](https://github.com/rocwind/msf-cli/commit/417ec9b25315a6933999ae726c26c673f6db9411))
+
 ## [1.0.0](https://github.com/rocwind/msf-cli/compare/v0.0.1...v1.0.0) (2021-04-03)
 
 

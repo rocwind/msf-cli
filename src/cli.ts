@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import { join } from 'path';
+import { join, resolve } from 'path';
 import yargs from 'yargs';
 import { cyan, green, red } from 'chalk';
 import { existsSync, readFileSync, removeSync, ensureDirSync } from 'fs-extra';
@@ -16,7 +16,13 @@ export const argv = yargs
                 red('Error: invalid command arguments, msf can only sync between 2 folders'),
             );
         }
+        const pathSet = new Set<string>();
         argv._.forEach((path: string) => {
+            const absPath = resolve(path);
+            if (pathSet.has(absPath)) {
+                throw new Error(red(`Error: cannot sync a folder to itself ${path}`));
+            }
+            pathSet.add(absPath);
             const exists = existsSync(path);
             if (!exists) {
                 throw new Error(red(`Error: ${path} is not exists`));

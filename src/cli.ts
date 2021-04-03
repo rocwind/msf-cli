@@ -43,7 +43,9 @@ let includescMatcher: Ignore;
 if (argv.files) {
     includescMatcher = ignore();
     argv.files.forEach((pattern: string) => {
-        includescMatcher.add(pattern);
+        pattern.split(',').forEach((segment) => {
+            includescMatcher.add(segment);
+        });
     });
 }
 

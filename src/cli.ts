@@ -1,5 +1,5 @@
 #! /usr/bin/env node
-import { join, resolve } from 'path';
+import { join, resolve, parse, dirname, relative } from 'path';
 import yargs from 'yargs';
 import { cyan, green, red } from 'chalk';
 import { existsSync, readFileSync, removeSync, ensureDirSync } from 'fs-extra';
@@ -55,10 +55,69 @@ if (argv.files) {
     });
 }
 
+// deal with ignore files
 let ignoresMatcher: Ignore;
-const ignoreFile = join(src, '.msfignore');
-if (existsSync(ignoreFile)) {
-    ignoresMatcher = ignore().add(readFileSync(ignoreFile).toString());
+// find up from src for ignoreFile
+const ignoreFilename = '.msfignore';
+const srcAbsPath = resolve(src);
+const { root: srcRoot } = parse(srcAbsPath);
+let directory = srcAbsPath;
+let ignoreFile: string;
+let ignoreFileRelative: string;
+while (true) {
+    const testFile = join(directory, ignoreFilename);
+    if (existsSync(testFile)) {
+        ignoreFileRelative = relative(directory, srcAbsPath) + '/';
+        ignoreFile = testFile;
+        break;
+    }
+
+    if (directory === srcRoot) {
+        break;
+    }
+
+    directory = dirname(directory);
+}
+
+if (ignoreFile) {
+    ignoresMatcher = ignore();
+
+    readFileSync(ignoreFile)
+        .toString()
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => {
+            // empty line
+            if (!line) {
+                return false;
+            }
+            // comments
+            if (line.startsWith('#')) {
+                return false;
+            }
+
+            // files in other dir
+            if (
+                ignoreFileRelative &&
+                !(line[0] === '*') &&
+                line.includes('/') &&
+                !line.startsWith(ignoreFileRelative)
+            ) {
+                return false;
+            }
+
+            return true;
+        })
+        .map((line) => {
+            // add ignore info by path relative to src
+            if (ignoreFileRelative && line.startsWith(ignoreFileRelative)) {
+                return relative(ignoreFileRelative, line);
+            }
+            return line;
+        })
+        .forEach((line) => {
+            ignoresMatcher.add(line);
+        });
 }
 
 const getSubscriptionHandler = (source: string, target: string, logger: Logger): Handler => {

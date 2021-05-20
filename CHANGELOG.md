@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0](https://github.com/rocwind/msf-cli/compare/v1.1.0...v1.2.0) (2021-05-20)
+
+
+### Features
+
+* search for .msfignore file by walking up parent directories of src ([04a5037](https://github.com/rocwind/msf-cli/commit/04a5037c8cab0d290782b607fcf8724229d4ab2e))
+
 ## [1.1.0](https://github.com/rocwind/msf-cli/compare/v1.0.0...v1.1.0) (2021-04-03)
 
 

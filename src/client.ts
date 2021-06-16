@@ -1,7 +1,7 @@
 import { promisify } from 'util';
 import { resolve } from 'path';
 import watchman from 'fb-watchman';
-import { yellow } from 'chalk';
+import { red, yellow } from 'chalk';
 import { wait } from 'wait-ready';
 import { Logger } from './logger';
 
@@ -23,9 +23,14 @@ const exit = () => {
     console.log(yellow('\ncleanup and exit ...'));
     Promise.all(
         Array.from(watchingPaths).map((path) => {
-            return command(['unsubscribe', path, path]).then(() => {
-                command(['watch-del', path]);
-            });
+            return command(['unsubscribe', path, path])
+                .then(() => command(['watch-del', path]))
+                .catch((err) => {
+                    const msg = err?.message;
+                    if (msg) {
+                        console.log(red(msg));
+                    }
+                });
         }),
     ).then(() => {
         process.exit();

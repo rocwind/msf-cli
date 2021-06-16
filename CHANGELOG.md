@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.1](https://github.com/rocwind/msf-cli/compare/v1.2.0...v1.2.1) (2021-06-16)
+
+
+### Bug Fixes
+
+* msf cannot handle sub folder ignores with ignore file in working dir ([5451033](https://github.com/rocwind/msf-cli/commit/5451033c4a71e6da7d1efb2585fc53527652b6ef))
+* msf should exit process even if cleanup failed ([2ca285c](https://github.com/rocwind/msf-cli/commit/2ca285c2ff17021e7609111ec17bf18fb8d5bd30))
+
 ## [1.2.0](https://github.com/rocwind/msf-cli/compare/v1.1.0...v1.2.0) (2021-05-20)
 
 

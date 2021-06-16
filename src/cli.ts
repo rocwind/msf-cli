@@ -67,7 +67,10 @@ let ignoreFileRelative: string;
 while (true) {
     const testFile = join(directory, ignoreFilename);
     if (existsSync(testFile)) {
-        ignoreFileRelative = relative(directory, srcAbsPath) + '/';
+        ignoreFileRelative = relative(directory, srcAbsPath);
+        if (ignoreFileRelative) {
+            ignoreFileRelative += '/';
+        }
         ignoreFile = testFile;
         break;
     }

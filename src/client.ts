@@ -75,7 +75,11 @@ export const startWatch = async (path: string, handler: Handler, logger: Logger)
     watchingPaths.add(absPath);
     await afterReady();
     logger(`start watching ${absPath} ...`);
-    await command(['watch-project', absPath]);
+    // not sure about the reason, but it seems there are cases
+    // 'watch-project' throws 'RootResolveError: unable to resolve root' exception
+    // while 'watch' just works, so we use 'watch' here to avoid the exception
+    // - although 'watch-project' is preffered to be used according to official doc
+    await command(['watch', absPath]);
     // subscrbie changes
     await command([
         'subscribe',

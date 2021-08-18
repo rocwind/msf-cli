@@ -5,6 +5,8 @@ msf(My Sync Folders) listens to changes between 2 folders and try to keep them i
 - msf syncs folders in bi-direction
 
 ## Install
+msf depends on [watchman](https://facebook.github.io/watchman/) to monitor file changes, please [install watchman](https://facebook.github.io/watchman/docs/install.html) first.
+
 `npm install -g msf-cli`
 
 ## Usage

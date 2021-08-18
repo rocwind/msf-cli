@@ -41,7 +41,8 @@ export const argv = yargs
         choices: ['update-both', 'update', 'mirror'],
         describe: 'sync mode: bi-directional/uni-directional update between the 2 folders',
         default: 'update-both',
-    }).argv;
+    })
+    .parseSync();
 
 const [src, dest] = argv._ as [string, string];
 

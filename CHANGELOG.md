@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.3](https://github.com/rocwind/msf-cli/compare/v1.2.2...v1.2.3) (2021-08-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency fs-extra to v10 ([8846c04](https://github.com/rocwind/msf-cli/commit/8846c04de55a5b4d4b34d100682937ea854083e6))
+* **deps:** update wait-ready and chalk ([e31d498](https://github.com/rocwind/msf-cli/commit/e31d498993aa4295f1d2d58c7ba277920686707d))
+* **deps:** update yargs to v17 ([506a3c1](https://github.com/rocwind/msf-cli/commit/506a3c142a5334add94657cc4c46241678f8df3b))
+
 ### [1.2.2](https://github.com/rocwind/msf-cli/compare/v1.2.1...v1.2.2) (2021-07-12)
 
 

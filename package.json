@@ -1,6 +1,6 @@
 {
   "name": "msf-cli",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "My Sync Folders - sync files between folders based on watchman",
   "main": "index.js",
   "bin": {

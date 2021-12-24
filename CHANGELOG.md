@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.4](https://github.com/rocwind/msf-cli/compare/v1.2.3...v1.2.4) (2021-12-24)
+
+
+### Bug Fixes
+
+* serialize calls to watchman to avoid issues ([54a2e3a](https://github.com/rocwind/msf-cli/commit/54a2e3a1a38cad7c5f9ccda5165a613cba751fa3))
+
 ### [1.2.3](https://github.com/rocwind/msf-cli/compare/v1.2.2...v1.2.3) (2021-08-18)
 
 

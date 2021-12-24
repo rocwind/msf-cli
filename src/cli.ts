@@ -165,10 +165,12 @@ if (argv.mode === 'mirror') {
     ensureDirSync(dest);
 }
 
-const srcLogger = getLogger((text) => green(`=> ${text}`));
-startWatch(src, getSubscriptionHandler(src, dest, srcLogger), srcLogger);
+(async function start() {
+    const srcLogger = getLogger((text) => green(`=> ${text}`));
+    await startWatch(src, getSubscriptionHandler(src, dest, srcLogger), srcLogger);
 
-if (argv.mode === 'update-both') {
-    const destLogger = getLogger((text) => cyan(`<= ${text}`));
-    startWatch(dest, getSubscriptionHandler(dest, src, destLogger), destLogger);
-}
+    if (argv.mode === 'update-both') {
+        const destLogger = getLogger((text) => cyan(`<= ${text}`));
+        await startWatch(dest, getSubscriptionHandler(dest, src, destLogger), destLogger);
+    }
+})();

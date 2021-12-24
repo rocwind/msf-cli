@@ -19,22 +19,21 @@ capabilityCheck({ required: ['relative_root'] }).then((resp: unknown) => {
 const watchingPaths = new Set<string>();
 
 // exit process
-const exit = () => {
+const exit = async () => {
     console.log(yellow('\ncleanup and exit ...'));
-    Promise.all(
-        Array.from(watchingPaths).map((path) => {
-            return command(['unsubscribe', path, path])
-                .then(() => command(['watch-del', path]))
-                .catch((err) => {
-                    const msg = err?.message;
-                    if (msg) {
-                        console.log(red(msg));
-                    }
-                });
-        }),
-    ).then(() => {
-        process.exit();
-    });
+    const paths = Array.from(watchingPaths);
+    for (const path of paths) {
+        try {
+            await command(['unsubscribe', path, path]);
+            await command(['watch-del', path]);
+        } catch (err) {
+            const msg = err?.message;
+            if (msg) {
+                console.log(red(msg));
+            }
+        }
+    }
+    process.exit();
 };
 
 process.on('SIGINT', () => {

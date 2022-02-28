@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [1.2.5](https://github.com/rocwind/msf-cli/compare/v1.2.4...v1.2.5) (2022-02-28)
+
+
+### Bug Fixes
+
+* **deps:** update dependency wait-ready to ^0.6.0 ([4aaab67](https://github.com/rocwind/msf-cli/commit/4aaab67a28924e892fd7dd13e7f475aef0c4a9f4))
+
 ### [1.2.4](https://github.com/rocwind/msf-cli/compare/v1.2.3...v1.2.4) (2021-12-24)
 
 

@@ -1,7 +1,7 @@
 import { promisify } from 'util';
 import { resolve } from 'path';
 import watchman from 'fb-watchman';
-import { red, yellow } from 'chalk';
+import chalk from 'chalk';
 import { wait } from 'wait-ready';
 import { Logger } from './logger';
 
@@ -20,7 +20,7 @@ const watchingPaths = new Set<string>();
 
 // exit process
 const exit = async () => {
-    console.log(yellow('\ncleanup and exit ...'));
+    console.log(chalk.yellow('\ncleanup and exit ...'));
     const paths = Array.from(watchingPaths);
     for (const path of paths) {
         try {
@@ -29,7 +29,7 @@ const exit = async () => {
         } catch (err) {
             const msg = err?.message;
             if (msg) {
-                console.log(red(msg));
+                console.log(chalk.red(msg));
             }
         }
     }

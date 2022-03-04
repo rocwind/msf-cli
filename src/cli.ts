@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 import { join, resolve, parse, dirname, relative } from 'path';
 import yargs from 'yargs';
-import { cyan, green, red } from 'chalk';
+import chalk from 'chalk';
 import { existsSync, readFileSync, removeSync, ensureDirSync } from 'fs-extra';
 import ignore, { Ignore } from 'ignore';
 import { startWatch, Handler } from './client';
@@ -13,19 +13,19 @@ export const argv = yargs
     .check((argv) => {
         if (argv._.length !== 2) {
             throw new Error(
-                red('Error: invalid command arguments, msf can only sync between 2 folders'),
+                chalk.red('Error: invalid command arguments, msf can only sync between 2 folders'),
             );
         }
         const pathSet = new Set<string>();
         argv._.forEach((path: string) => {
             const absPath = resolve(path);
             if (pathSet.has(absPath)) {
-                throw new Error(red(`Error: cannot sync a folder to itself ${path}`));
+                throw new Error(chalk.red(`Error: cannot sync a folder to itself ${path}`));
             }
             pathSet.add(absPath);
             const exists = existsSync(path);
             if (!exists) {
-                throw new Error(red(`Error: ${path} is not exists`));
+                throw new Error(chalk.red(`Error: ${path} is not exists`));
             }
         });
 
@@ -166,11 +166,11 @@ if (argv.mode === 'mirror') {
 }
 
 (async function start() {
-    const srcLogger = getLogger((text) => green(`=> ${text}`));
+    const srcLogger = getLogger((text) => chalk.green(`=> ${text}`));
     await startWatch(src, getSubscriptionHandler(src, dest, srcLogger), srcLogger);
 
     if (argv.mode === 'update-both') {
-        const destLogger = getLogger((text) => cyan(`<= ${text}`));
+        const destLogger = getLogger((text) => chalk.cyan(`<= ${text}`));
         await startWatch(dest, getSubscriptionHandler(dest, src, destLogger), destLogger);
     }
 })();

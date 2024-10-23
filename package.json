@@ -38,7 +38,7 @@
   "devDependencies": {
     "@types/fb-watchman": "2.0.4",
     "@types/fs-extra": "9.0.13",
-    "@types/node": "20.16.15",
+    "@types/node": "20.17.0",
     "@types/yargs": "17.0.33",
     "standard-version": "9.5.0",
     "typescript": "5.6.3"

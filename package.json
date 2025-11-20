@@ -39,7 +39,7 @@
     "@types/fb-watchman": "2.0.4",
     "@types/fs-extra": "9.0.13",
     "@types/node": "22.18.10",
-    "@types/yargs": "17.0.33",
+    "@types/yargs": "17.0.35",
     "standard-version": "9.5.0",
     "typescript": "5.9.3"
   }

@@ -36,7 +36,7 @@
     "yargs": "^17.1.1"
   },
   "devDependencies": {
-    "@types/fb-watchman": "2.0.4",
+    "@types/fb-watchman": "2.0.6",
     "@types/fs-extra": "9.0.13",
     "@types/node": "22.19.1",
     "@types/yargs": "17.0.35",
